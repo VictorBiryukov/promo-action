@@ -1,0 +1,18 @@
+{
+    "name": "fn-admin-frontend",
+    "version": "1.0.0",
+    "description": "Admin frontend function",
+    "main": "main/handler.js",
+    "scripts": {
+      "prepare-function": ""
+    },
+    "keywords": [],
+    "author": "SBT",
+    "staticContentFolders": [
+      "static"
+    ],
+    "dependencies": {
+    },
+    "devDependencies": {
+    }
+  }

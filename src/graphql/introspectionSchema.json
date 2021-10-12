@@ -1,0 +1,164 @@
+{
+    "__validationErrors": [],
+    "_queryType": "_Query",
+    "_mutationType": "_Mutation",
+    "_subscriptionType": null,
+    "_directives": [
+        "@include",
+        "@skip",
+        "@mergeReqSpec",
+        "@deprecated",
+        "@specifiedBy"
+    ],
+    "_typeMap": {
+        "BigDecimal": "BigDecimal",
+        "Boolean": "Boolean",
+        "Byte": "Byte",
+        "Char": "Char",
+        "Float": "Float",
+        "Gift": "Gift",
+        "GiftRequestCounter": "GiftRequestCounter",
+        "GiftVendor": "GiftVendor",
+        "ID": "ID",
+        "Int": "Int",
+        "Long": "Long",
+        "Short": "Short",
+        "Stakeholder": "Stakeholder",
+        "Status": "Status",
+        "StatusGraph": "StatusGraph",
+        "String": "String",
+        "Voucher": "Voucher",
+        "VoucherSerie": "VoucherSerie",
+        "_ByteArray": "_ByteArray",
+        "_CreateGiftInput": "_CreateGiftInput",
+        "_CreateGiftRequestCounterInput": "_CreateGiftRequestCounterInput",
+        "_CreateGiftVendorInput": "_CreateGiftVendorInput",
+        "_CreateVoucherInput": "_CreateVoucherInput",
+        "_CreateVoucherSerieInput": "_CreateVoucherSerieInput",
+        "_Date": "_Date",
+        "_DateTime": "_DateTime",
+        "_DoubleReferenceInput": "_DoubleReferenceInput",
+        "_EC_Gift": "_EC_Gift",
+        "_EC_GiftRequestCounter": "_EC_GiftRequestCounter",
+        "_EC_GiftVendor": "_EC_GiftVendor",
+        "_EC_Stakeholder": "_EC_Stakeholder",
+        "_EC_Status": "_EC_Status",
+        "_EC_StatusGraph": "_EC_StatusGraph",
+        "_EC_Voucher": "_EC_Voucher",
+        "_EC_VoucherSerie": "_EC_VoucherSerie",
+        "_ENC_GiftKind": "_ENC_GiftKind",
+        "_EN_GiftKind": "_EN_GiftKind",
+        "_E_Gift": "_E_Gift",
+        "_E_GiftRequestCounter": "_E_GiftRequestCounter",
+        "_E_GiftVendor": "_E_GiftVendor",
+        "_E_Stakeholder": "_E_Stakeholder",
+        "_E_Status": "_E_Status",
+        "_E_StatusGraph": "_E_StatusGraph",
+        "_E_Voucher": "_E_Voucher",
+        "_E_VoucherSerie": "_E_VoucherSerie",
+        "_Entity": "_Entity",
+        "_Float4": "_Float4",
+        "_G_GiftReference": "_G_GiftReference",
+        "_MergedEntitiesCollection": "_MergedEntitiesCollection",
+        "_Mutation": "_Mutation",
+        "_OffsetDateTime": "_OffsetDateTime",
+        "_Packet": "_Packet",
+        "_Query": "_Query",
+        "_SEC_Gift": "_SEC_Gift",
+        "_SEC_GiftRequestCounter": "_SEC_GiftRequestCounter",
+        "_SEC_GiftVendor": "_SEC_GiftVendor",
+        "_SEC_Stakeholder": "_SEC_Stakeholder",
+        "_SEC_Status": "_SEC_Status",
+        "_SEC_StatusGraph": "_SEC_StatusGraph",
+        "_SEC_Voucher": "_SEC_Voucher",
+        "_SEC_VoucherSerie": "_SEC_VoucherSerie",
+        "_SE_Gift": "_SE_Gift",
+        "_SE_GiftRequestCounter": "_SE_GiftRequestCounter",
+        "_SE_GiftVendor": "_SE_GiftVendor",
+        "_SE_Stakeholder": "_SE_Stakeholder",
+        "_SE_Status": "_SE_Status",
+        "_SE_StatusGraph": "_SE_StatusGraph",
+        "_SE_Voucher": "_SE_Voucher",
+        "_SE_VoucherSerie": "_SE_VoucherSerie",
+        "_SortCriterionSpecification": "_SortCriterionSpecification",
+        "_SortOrder": "_SortOrder",
+        "_StatusInput": "_StatusInput",
+        "_UpdateGiftInput": "_UpdateGiftInput",
+        "_UpdateGiftRequestCounterInput": "_UpdateGiftRequestCounterInput",
+        "_UpdateGiftVendorInput": "_UpdateGiftVendorInput",
+        "_UpdateVoucherInput": "_UpdateVoucherInput",
+        "_UpdateVoucherSerieInput": "_UpdateVoucherSerieInput",
+        "__Directive": "__Directive",
+        "__DirectiveLocation": "__DirectiveLocation",
+        "__EnumValue": "__EnumValue",
+        "__Field": "__Field",
+        "__InputValue": "__InputValue",
+        "__Schema": "__Schema",
+        "__Type": "__Type",
+        "__TypeKind": "__TypeKind"
+    },
+    "_subTypeMap": {},
+    "_implementationsMap": {
+        "_Entity": {
+            "objects": [
+                "_E_Gift",
+                "_E_GiftRequestCounter",
+                "_E_GiftVendor",
+                "_E_Stakeholder",
+                "_E_Status",
+                "_E_StatusGraph",
+                "_E_Voucher",
+                "_E_VoucherSerie"
+            ],
+            "interfaces": []
+        },
+        "Gift": {
+            "objects": [
+                "_E_Gift"
+            ],
+            "interfaces": []
+        },
+        "GiftRequestCounter": {
+            "objects": [
+                "_E_GiftRequestCounter"
+            ],
+            "interfaces": []
+        },
+        "GiftVendor": {
+            "objects": [
+                "_E_GiftVendor"
+            ],
+            "interfaces": []
+        },
+        "Stakeholder": {
+            "objects": [
+                "_E_Stakeholder"
+            ],
+            "interfaces": []
+        },
+        "Status": {
+            "objects": [
+                "_E_Status"
+            ],
+            "interfaces": []
+        },
+        "StatusGraph": {
+            "objects": [
+                "_E_StatusGraph"
+            ],
+            "interfaces": []
+        },
+        "Voucher": {
+            "objects": [
+                "_E_Voucher"
+            ],
+            "interfaces": []
+        },
+        "VoucherSerie": {
+            "objects": [
+                "_E_VoucherSerie"
+            ],
+            "interfaces": []
+        }
+    }
+}

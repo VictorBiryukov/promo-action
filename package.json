@@ -1,0 +1,76 @@
+{
+  "name": "dataspace-meta",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "3.3.7",
+    "@types/classnames": "2.2.10",
+    "@types/node": "12.19.14",
+    "@types/react": "16.14.2",
+    "@types/react-dom": "16.9.10",
+    "antd": "4.13.0",
+    "graphql": "15.4.0",
+    "process": "0.11.10",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-router-dom": "5.2.0",
+    "typescript": "4.1.3",
+    "util": "0.12.3",
+    "web-vitals": "0.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "7.13.8",
+    "@babel/plugin-proposal-class-properties": "7.13.0",
+    "@babel/preset-env": "7.13.9",
+    "@babel/preset-react": "7.12.13",
+    "@babel/preset-typescript": "7.13.0",
+    "@graphql-codegen/cli": "^1.9.0",
+    "@graphql-codegen/typescript": "1.22.3",
+    "@graphql-codegen/typescript-operations": "1.18.2",
+    "@graphql-codegen/typescript-react-apollo": "2.2.7",
+    "@simbathesailor/babel-plugin-use-what-changed": "^2.1.0",
+    "@simbathesailor/use-what-changed": "^2.0.0",
+    "@types/file-saver": "2.0.1",
+    "@types/lodash": "4.14.168",
+    "@types/node": "14.6.3",
+    "@types/react": "16.9.49",
+    "@types/react-router-dom": "5.1.7",
+    "babel-loader": "8.2.2",
+    "clean-webpack-plugin": "3.0.0",
+    "compression-webpack-plugin": "7.1.2",
+    "css-loader": "5.1.3",
+    "extract-loader": "5.1.0",
+    "html-webpack-plugin": "5.3.1",
+    "http-proxy-middleware": "^2.0.0",
+    "style-loader": "2.0.0",
+    "ts-loader": "8.0.17",
+    "typescript": "4.1.3",
+    "webpack": "5.27.0",
+    "webpack-bundle-analyzer": "^4.4.0",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "start": "webpack serve --config ./webpack.dev.config.js",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "bundle": "webpack"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
