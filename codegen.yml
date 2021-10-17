@@ -1,9 +1,9 @@
-overwrite: true
-schema: 'http://localhost:8081/graphql'
-documents: 'src/graphql/**/*.graphql'
+overwrite: true # флаг перезаписи файла генерации
+schema: 'schema.graphql' # файл graphql-схемы
+documents: 'src/graphql/**/*.graphql' # маска файлов c graphql-запросами
 generates:
-  ./src/__generate/graphql-frontend.ts:
+  ./src/__generate/graphql-frontend.ts: # результирующий файл генерации
     plugins:
-      - typescript
-      - typescript-operations
-      - typescript-react-apollo      
+      - typescript # генерация типов
+      - typescript-operations # генерация операций
+      - typescript-react-apollo # генерация React Apollo компонентов

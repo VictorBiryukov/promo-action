@@ -1,0 +1,991 @@
+schema {
+  query: _Query
+  mutation: _Mutation
+}
+
+directive @mergeReqSpec(cond: String) on INLINE_FRAGMENT
+
+# Built-in java.math.BigDecimal
+scalar BigDecimal
+
+# Built-in Byte as Int
+scalar Byte
+
+# Built-in Char as Character
+scalar Char
+
+interface Gift {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  kind: _EN_GiftKind
+  serialNumber: String!
+  type: String!
+  vendor(alias: String): GiftVendor!
+  aggregateRoot(alias: String): GiftVendor
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface GiftRequestCounter {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  counter: Int
+  lastRequest: _DateTime
+  kind: _EN_GiftKind
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface GiftVendor {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  name: String
+  type: String!
+  gifts(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Gift!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+# Long type
+scalar Long
+
+# Built-in Short as Int
+scalar Short
+
+interface Stakeholder {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  code: String
+  name: String
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface Status {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  description: String
+  code: String
+  statusType: String
+  initial: Boolean
+  name: String
+  stakeholder(alias: String): Stakeholder
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface StatusGraph {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  code: String
+  name: String
+  statusTo(alias: String): Status
+  statusFrom(alias: String): Status
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface Voucher {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  issuedAt: _DateTime
+  code: String!
+  type: String!
+  serie(alias: String): VoucherSerie!
+  statusForVoucherMain(alias: String): Status
+  aggregateRoot(alias: String): VoucherSerie
+  gift: _G_GiftReference!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface VoucherSerie {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  code: String
+  activeTo: _Date
+  startedAt: _Date
+  type: String!
+  vouchers(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Voucher!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+scalar _ByteArray
+
+input _CreateGiftInput {
+  serialNumber: String!
+  vendor: ID!
+  kind: _EN_GiftKind
+}
+
+input _CreateGiftRequestCounterInput {
+  lastRequest: _DateTime
+  kind: _EN_GiftKind
+  counter: Int
+}
+
+input _CreateGiftVendorInput {
+  name: String
+}
+
+input _CreateVoucherInput {
+  gift: _DoubleReferenceInput
+  code: String!
+  statusForVoucherMain: _StatusInput
+  serie: ID!
+  issuedAt: _DateTime
+}
+
+input _CreateVoucherSerieInput {
+  code: String
+  startedAt: _Date
+  activeTo: _Date
+}
+
+scalar _Date
+
+scalar _DateTime
+
+input _DoubleReferenceInput {
+  rootEntityId: String!
+  entityId: String!
+}
+
+type _EC_Gift {
+  elems: [Gift!]!
+  count: Int!
+}
+
+type _EC_GiftRequestCounter {
+  elems: [GiftRequestCounter!]!
+  count: Int!
+}
+
+type _EC_GiftVendor {
+  elems: [GiftVendor!]!
+  count: Int!
+}
+
+type _EC_Stakeholder {
+  elems: [Stakeholder!]!
+  count: Int!
+}
+
+type _EC_Status {
+  elems: [Status!]!
+  count: Int!
+}
+
+type _EC_StatusGraph {
+  elems: [StatusGraph!]!
+  count: Int!
+}
+
+type _EC_Voucher {
+  elems: [Voucher!]!
+  count: Int!
+}
+
+type _EC_VoucherSerie {
+  elems: [VoucherSerie!]!
+  count: Int!
+}
+
+type _ENC_GiftKind {
+  elems: [_EN_GiftKind!]!
+  count: Int!
+}
+
+enum _EN_GiftKind {
+  CAP
+  TSHIRT
+  MUG
+}
+
+type _E_Gift implements _Entity & Gift {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  kind: _EN_GiftKind
+  serialNumber: String!
+  type: String!
+  vendor(alias: String): GiftVendor!
+  aggregateRoot(alias: String): GiftVendor
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_GiftRequestCounter implements _Entity & GiftRequestCounter {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  counter: Int
+  lastRequest: _DateTime
+  kind: _EN_GiftKind
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_GiftVendor implements _Entity & GiftVendor {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  name: String
+  type: String!
+  gifts(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Gift!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_Stakeholder implements _Entity & Stakeholder {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  code: String
+  name: String
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_Status implements _Entity & Status {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  description: String
+  code: String
+  statusType: String
+  initial: Boolean
+  name: String
+  stakeholder(alias: String): Stakeholder
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_StatusGraph implements _Entity & StatusGraph {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  code: String
+  name: String
+  statusTo(alias: String): Status
+  statusFrom(alias: String): Status
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_Voucher implements _Entity & Voucher {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  issuedAt: _DateTime
+  code: String!
+  type: String!
+  serie(alias: String): VoucherSerie!
+  statusForVoucherMain(alias: String): Status
+  aggregateRoot(alias: String): VoucherSerie
+  gift: _G_GiftReference!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _E_VoucherSerie implements _Entity & VoucherSerie {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  code: String
+  activeTo: _Date
+  startedAt: _Date
+  type: String!
+  vouchers(
+    elemAlias: String
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Voucher!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+interface _Entity {
+  id: ID!
+}
+
+scalar _Float4
+
+type _G_GiftReference {
+  entityId: String
+  rootEntityId: String
+  entity: Gift
+}
+
+type _MergedEntitiesCollection {
+  elems: [_Entity!]!
+  count: Int!
+}
+
+type _Mutation {
+  packet(aggregateVersion: Long, idempotencePacketId: String): _Packet
+}
+
+scalar _OffsetDateTime
+
+type _Packet {
+  createGift(input: _CreateGiftInput!): Gift
+  updateGift(input: _UpdateGiftInput!): Gift
+  getGift(id: ID!): Gift
+  deleteGift(id: ID!): String
+  createGiftVendor(input: _CreateGiftVendorInput!): GiftVendor
+  updateGiftVendor(input: _UpdateGiftVendorInput!): GiftVendor
+  getGiftVendor(id: ID!): GiftVendor
+  deleteGiftVendor(id: ID!): String
+  createVoucherSerie(input: _CreateVoucherSerieInput!): VoucherSerie
+  updateVoucherSerie(input: _UpdateVoucherSerieInput!): VoucherSerie
+  getVoucherSerie(id: ID!): VoucherSerie
+  deleteVoucherSerie(id: ID!): String
+  createGiftRequestCounter(
+    input: _CreateGiftRequestCounterInput!
+  ): GiftRequestCounter
+  updateGiftRequestCounter(
+    input: _UpdateGiftRequestCounterInput!
+  ): GiftRequestCounter
+  getGiftRequestCounter(id: ID!): GiftRequestCounter
+  deleteGiftRequestCounter(id: ID!): String
+  createVoucher(input: _CreateVoucherInput!): Voucher
+  updateVoucher(input: _UpdateVoucherInput!): Voucher
+  getVoucher(id: ID!): Voucher
+  deleteVoucher(id: ID!): String
+  aggregateVersion: Long
+  isIdempotenceResponse: Boolean
+}
+
+type _Query {
+  selectionByGift(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_Gift!
+  selectionByGiftVendor(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_GiftVendor!
+  selectionByVoucherSerie(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_VoucherSerie!
+  selectionByVoucher(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_Voucher!
+  selectionByGiftRequestCounter(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_GiftRequestCounter!
+  selectionByStakeholder(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_Stakeholder!
+  selectionByStatus(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_Status!
+  selectionByStatusGraph(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+    distinct: Boolean
+  ): _SEC_StatusGraph!
+  merge(
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _MergedEntitiesCollection!
+  searchGift(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Gift!
+  searchGiftVendor(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_GiftVendor!
+  searchVoucherSerie(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_VoucherSerie!
+  searchVoucher(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Voucher!
+  searchGiftRequestCounter(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_GiftRequestCounter!
+  searchStakeholder(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Stakeholder!
+  searchStatus(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_Status!
+  searchStatusGraph(
+    cond: String
+    limit: Int
+    offset: Int
+    sort: [_SortCriterionSpecification!]
+  ): _EC_StatusGraph!
+}
+
+type _SEC_Gift {
+  elems: [_SE_Gift!]!
+  count: Int!
+}
+
+type _SEC_GiftRequestCounter {
+  elems: [_SE_GiftRequestCounter!]!
+  count: Int!
+}
+
+type _SEC_GiftVendor {
+  elems: [_SE_GiftVendor!]!
+  count: Int!
+}
+
+type _SEC_Stakeholder {
+  elems: [_SE_Stakeholder!]!
+  count: Int!
+}
+
+type _SEC_Status {
+  elems: [_SE_Status!]!
+  count: Int!
+}
+
+type _SEC_StatusGraph {
+  elems: [_SE_StatusGraph!]!
+  count: Int!
+}
+
+type _SEC_Voucher {
+  elems: [_SE_Voucher!]!
+  count: Int!
+}
+
+type _SEC_VoucherSerie {
+  elems: [_SE_VoucherSerie!]!
+  count: Int!
+}
+
+type _SE_Gift {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  kind: _EN_GiftKind
+  serialNumber: String!
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_GiftRequestCounter {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  counter: Int
+  lastRequest: _DateTime
+  kind: _EN_GiftKind
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_GiftVendor {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  name: String
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_Stakeholder {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  code: String
+  name: String
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_Status {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  description: String
+  code: String
+  statusType: String
+  initial: Boolean
+  name: String
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_StatusGraph {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  code: String
+  name: String
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_Voucher {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  issuedAt: _DateTime
+  code: String!
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+type _SE_VoucherSerie {
+  id: ID!
+  aggVersion: Long!
+  lastChangeDate: _DateTime
+  chgCnt: Long
+  code: String
+  activeTo: _Date
+  startedAt: _Date
+  type: String!
+  _getChar(expression: String!): Char
+  _getString(expression: String!): String
+  _getByte(expression: String!): Byte
+  _getShort(expression: String!): Short
+  _getInt(expression: String!): Int
+  _getLong(expression: String!): Long
+  _getFloat(expression: String!): _Float4
+  _getDouble(expression: String!): Float
+  _getBigDecimal(expression: String!): BigDecimal
+  _getDate(expression: String!): _Date
+  _getDateTime(expression: String!): _DateTime
+  _getOffsetDateTime(expression: String!): _OffsetDateTime
+  _getBoolean(expression: String!): Boolean
+  _getByteArray(expression: String!): _ByteArray
+}
+
+input _SortCriterionSpecification {
+  crit: String!
+  order: _SortOrder! = ASC
+  nullsLast: Boolean
+}
+
+enum _SortOrder {
+  ASC
+  DESC
+}
+
+input _StatusInput {
+  code: String!
+  reason: String
+}
+
+input _UpdateGiftInput {
+  serialNumber: String
+  kind: _EN_GiftKind
+  id: ID!
+}
+
+input _UpdateGiftRequestCounterInput {
+  lastRequest: _DateTime
+  kind: _EN_GiftKind
+  counter: Int
+  id: ID!
+}
+
+input _UpdateGiftVendorInput {
+  name: String
+  id: ID!
+}
+
+input _UpdateVoucherInput {
+  gift: _DoubleReferenceInput
+  code: String
+  statusForVoucherMain: _StatusInput
+  issuedAt: _DateTime
+  id: ID!
+}
+
+input _UpdateVoucherSerieInput {
+  code: String
+  startedAt: _Date
+  activeTo: _Date
+  id: ID!
+}

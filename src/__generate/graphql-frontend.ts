@@ -12,15 +12,10 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** Built-in java.math.BigDecimal */
   BigDecimal: any;
-  /** Built-in Byte as Int */
   Byte: any;
-  /** Built-in Char as Character */
   Char: any;
-  /** Long type */
   Long: any;
-  /** Built-in Short as Int */
   Short: any;
   _ByteArray: any;
   _Date: any;
@@ -338,104 +333,14 @@ export type GiftVendor_GetByteArrayArgs = {
 };
 
 
-export type RootDictionary = {
-  id: Scalars['ID'];
-  aggVersion: Scalars['Long'];
-  type: Scalars['String'];
-  _getChar?: Maybe<Scalars['Char']>;
-  _getString?: Maybe<Scalars['String']>;
-  _getByte?: Maybe<Scalars['Byte']>;
-  _getShort?: Maybe<Scalars['Short']>;
-  _getInt?: Maybe<Scalars['Int']>;
-  _getLong?: Maybe<Scalars['Long']>;
-  _getFloat?: Maybe<Scalars['_Float4']>;
-  _getDouble?: Maybe<Scalars['Float']>;
-  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
-  _getDate?: Maybe<Scalars['_Date']>;
-  _getDateTime?: Maybe<Scalars['_DateTime']>;
-  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
-  _getBoolean?: Maybe<Scalars['Boolean']>;
-  _getByteArray?: Maybe<Scalars['_ByteArray']>;
-};
-
-
-export type RootDictionary_GetCharArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetStringArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetByteArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetShortArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetIntArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetLongArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetFloatArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetDoubleArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetBigDecimalArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetDateArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetDateTimeArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetOffsetDateTimeArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetBooleanArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type RootDictionary_GetByteArrayArgs = {
-  expression: Scalars['String'];
-};
-
 
 export type Stakeholder = {
   id: Scalars['ID'];
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
-  name?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
   _getByte?: Maybe<Scalars['Byte']>;
@@ -527,11 +432,11 @@ export type Status = {
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
+  description?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
   statusType?: Maybe<Scalars['String']>;
   initial?: Maybe<Scalars['Boolean']>;
-  description?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   stakeholder?: Maybe<Stakeholder>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
@@ -629,10 +534,10 @@ export type StatusGraph = {
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
-  name?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
-  statusFrom?: Maybe<Status>;
+  name?: Maybe<Scalars['String']>;
   statusTo?: Maybe<Status>;
+  statusFrom?: Maybe<Status>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
   _getByte?: Maybe<Scalars['Byte']>;
@@ -650,12 +555,12 @@ export type StatusGraph = {
 };
 
 
-export type StatusGraphStatusFromArgs = {
+export type StatusGraphStatusToArgs = {
   alias?: Maybe<Scalars['String']>;
 };
 
 
-export type StatusGraphStatusToArgs = {
+export type StatusGraphStatusFromArgs = {
   alias?: Maybe<Scalars['String']>;
 };
 
@@ -734,8 +639,8 @@ export type Voucher = {
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
-  code: Scalars['String'];
   issuedAt?: Maybe<Scalars['_DateTime']>;
+  code: Scalars['String'];
   type: Scalars['String'];
   serie: VoucherSerie;
   statusForVoucherMain?: Maybe<Status>;
@@ -1003,12 +908,6 @@ export type _Ec_GiftVendor = {
   count: Scalars['Int'];
 };
 
-export type _Ec_RootDictionary = {
-  __typename?: '_EC_RootDictionary';
-  elems: Array<RootDictionary>;
-  count: Scalars['Int'];
-};
-
 export type _Ec_Stakeholder = {
   __typename?: '_EC_Stakeholder';
   elems: Array<Stakeholder>;
@@ -1046,9 +945,9 @@ export type _Enc_GiftKind = {
 };
 
 export enum _En_GiftKind {
-  Mug = 'MUG',
   Cap = 'CAP',
-  Tshirt = 'TSHIRT'
+  Tshirt = 'TSHIRT',
+  Mug = 'MUG'
 }
 
 export type _E_Gift = _Entity & Gift & {
@@ -1358,105 +1257,14 @@ export type _E_GiftVendor_GetByteArrayArgs = {
   expression: Scalars['String'];
 };
 
-export type _E_RootDictionary = _Entity & RootDictionary & {
-  __typename?: '_E_RootDictionary';
-  id: Scalars['ID'];
-  aggVersion: Scalars['Long'];
-  type: Scalars['String'];
-  _getChar?: Maybe<Scalars['Char']>;
-  _getString?: Maybe<Scalars['String']>;
-  _getByte?: Maybe<Scalars['Byte']>;
-  _getShort?: Maybe<Scalars['Short']>;
-  _getInt?: Maybe<Scalars['Int']>;
-  _getLong?: Maybe<Scalars['Long']>;
-  _getFloat?: Maybe<Scalars['_Float4']>;
-  _getDouble?: Maybe<Scalars['Float']>;
-  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
-  _getDate?: Maybe<Scalars['_Date']>;
-  _getDateTime?: Maybe<Scalars['_DateTime']>;
-  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
-  _getBoolean?: Maybe<Scalars['Boolean']>;
-  _getByteArray?: Maybe<Scalars['_ByteArray']>;
-};
-
-
-export type _E_RootDictionary_GetCharArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetStringArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetByteArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetShortArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetIntArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetLongArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetFloatArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetDoubleArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetBigDecimalArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetDateArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetDateTimeArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetOffsetDateTimeArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetBooleanArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _E_RootDictionary_GetByteArrayArgs = {
-  expression: Scalars['String'];
-};
-
 export type _E_Stakeholder = _Entity & Stakeholder & {
   __typename?: '_E_Stakeholder';
   id: Scalars['ID'];
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
-  name?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
   _getByte?: Maybe<Scalars['Byte']>;
@@ -1549,11 +1357,11 @@ export type _E_Status = _Entity & Status & {
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
+  description?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
   statusType?: Maybe<Scalars['String']>;
   initial?: Maybe<Scalars['Boolean']>;
-  description?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   stakeholder?: Maybe<Stakeholder>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
@@ -1652,10 +1460,10 @@ export type _E_StatusGraph = _Entity & StatusGraph & {
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
-  name?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
-  statusFrom?: Maybe<Status>;
+  name?: Maybe<Scalars['String']>;
   statusTo?: Maybe<Status>;
+  statusFrom?: Maybe<Status>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
   _getByte?: Maybe<Scalars['Byte']>;
@@ -1673,12 +1481,12 @@ export type _E_StatusGraph = _Entity & StatusGraph & {
 };
 
 
-export type _E_StatusGraphStatusFromArgs = {
+export type _E_StatusGraphStatusToArgs = {
   alias?: Maybe<Scalars['String']>;
 };
 
 
-export type _E_StatusGraphStatusToArgs = {
+export type _E_StatusGraphStatusFromArgs = {
   alias?: Maybe<Scalars['String']>;
 };
 
@@ -1758,8 +1566,8 @@ export type _E_Voucher = _Entity & Voucher & {
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
-  code: Scalars['String'];
   issuedAt?: Maybe<Scalars['_DateTime']>;
+  code: Scalars['String'];
   type: Scalars['String'];
   serie: VoucherSerie;
   statusForVoucherMain?: Maybe<Status>;
@@ -2130,6 +1938,14 @@ export type _PacketDeleteVoucherArgs = {
 
 export type _Query = {
   __typename?: '_Query';
+  selectionByGift: _Sec_Gift;
+  selectionByGiftVendor: _Sec_GiftVendor;
+  selectionByVoucherSerie: _Sec_VoucherSerie;
+  selectionByVoucher: _Sec_Voucher;
+  selectionByGiftRequestCounter: _Sec_GiftRequestCounter;
+  selectionByStakeholder: _Sec_Stakeholder;
+  selectionByStatus: _Sec_Status;
+  selectionByStatusGraph: _Sec_StatusGraph;
   merge: _MergedEntitiesCollection;
   searchGift: _Ec_Gift;
   searchGiftVendor: _Ec_GiftVendor;
@@ -2139,95 +1955,6 @@ export type _Query = {
   searchStakeholder: _Ec_Stakeholder;
   searchStatus: _Ec_Status;
   searchStatusGraph: _Ec_StatusGraph;
-  searchRootDictionary: _Ec_RootDictionary;
-  selectionByGift: _Sec_Gift;
-  selectionByGiftVendor: _Sec_GiftVendor;
-  selectionByVoucherSerie: _Sec_VoucherSerie;
-  selectionByVoucher: _Sec_Voucher;
-  selectionByGiftRequestCounter: _Sec_GiftRequestCounter;
-  selectionByStakeholder: _Sec_Stakeholder;
-  selectionByStatus: _Sec_Status;
-  selectionByStatusGraph: _Sec_StatusGraph;
-  selectionByRootDictionary: _Sec_RootDictionary;
-};
-
-
-export type _QueryMergeArgs = {
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
-};
-
-
-export type _QuerySearchGiftArgs = {
-  cond?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
-};
-
-
-export type _QuerySearchGiftVendorArgs = {
-  cond?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
-};
-
-
-export type _QuerySearchVoucherSerieArgs = {
-  cond?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
-};
-
-
-export type _QuerySearchVoucherArgs = {
-  cond?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
-};
-
-
-export type _QuerySearchGiftRequestCounterArgs = {
-  cond?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
-};
-
-
-export type _QuerySearchStakeholderArgs = {
-  cond?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
-};
-
-
-export type _QuerySearchStatusArgs = {
-  cond?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
-};
-
-
-export type _QuerySearchStatusGraphArgs = {
-  cond?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
-};
-
-
-export type _QuerySearchRootDictionaryArgs = {
-  cond?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  sort?: Maybe<Array<_SortCriterionSpecification>>;
 };
 
 
@@ -2303,12 +2030,74 @@ export type _QuerySelectionByStatusGraphArgs = {
 };
 
 
-export type _QuerySelectionByRootDictionaryArgs = {
+export type _QueryMergeArgs = {
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QuerySearchGiftArgs = {
   cond?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   sort?: Maybe<Array<_SortCriterionSpecification>>;
-  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type _QuerySearchGiftVendorArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QuerySearchVoucherSerieArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QuerySearchVoucherArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QuerySearchGiftRequestCounterArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QuerySearchStakeholderArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QuerySearchStatusArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
+};
+
+
+export type _QuerySearchStatusGraphArgs = {
+  cond?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Array<_SortCriterionSpecification>>;
 };
 
 export type _Sec_Gift = {
@@ -2326,12 +2115,6 @@ export type _Sec_GiftRequestCounter = {
 export type _Sec_GiftVendor = {
   __typename?: '_SEC_GiftVendor';
   elems: Array<_Se_GiftVendor>;
-  count: Scalars['Int'];
-};
-
-export type _Sec_RootDictionary = {
-  __typename?: '_SEC_RootDictionary';
-  elems: Array<_Se_RootDictionary>;
   count: Scalars['Int'];
 };
 
@@ -2650,105 +2433,14 @@ export type _Se_GiftVendor_GetByteArrayArgs = {
   expression: Scalars['String'];
 };
 
-export type _Se_RootDictionary = {
-  __typename?: '_SE_RootDictionary';
-  id: Scalars['ID'];
-  aggVersion: Scalars['Long'];
-  type: Scalars['String'];
-  _getChar?: Maybe<Scalars['Char']>;
-  _getString?: Maybe<Scalars['String']>;
-  _getByte?: Maybe<Scalars['Byte']>;
-  _getShort?: Maybe<Scalars['Short']>;
-  _getInt?: Maybe<Scalars['Int']>;
-  _getLong?: Maybe<Scalars['Long']>;
-  _getFloat?: Maybe<Scalars['_Float4']>;
-  _getDouble?: Maybe<Scalars['Float']>;
-  _getBigDecimal?: Maybe<Scalars['BigDecimal']>;
-  _getDate?: Maybe<Scalars['_Date']>;
-  _getDateTime?: Maybe<Scalars['_DateTime']>;
-  _getOffsetDateTime?: Maybe<Scalars['_OffsetDateTime']>;
-  _getBoolean?: Maybe<Scalars['Boolean']>;
-  _getByteArray?: Maybe<Scalars['_ByteArray']>;
-};
-
-
-export type _Se_RootDictionary_GetCharArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetStringArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetByteArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetShortArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetIntArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetLongArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetFloatArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetDoubleArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetBigDecimalArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetDateArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetDateTimeArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetOffsetDateTimeArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetBooleanArgs = {
-  expression: Scalars['String'];
-};
-
-
-export type _Se_RootDictionary_GetByteArrayArgs = {
-  expression: Scalars['String'];
-};
-
 export type _Se_Stakeholder = {
   __typename?: '_SE_Stakeholder';
   id: Scalars['ID'];
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
-  name?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
   _getByte?: Maybe<Scalars['Byte']>;
@@ -2841,11 +2533,11 @@ export type _Se_Status = {
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
+  description?: Maybe<Scalars['String']>;
+  code?: Maybe<Scalars['String']>;
   statusType?: Maybe<Scalars['String']>;
   initial?: Maybe<Scalars['Boolean']>;
-  description?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
   _getByte?: Maybe<Scalars['Byte']>;
@@ -2938,8 +2630,8 @@ export type _Se_StatusGraph = {
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
-  name?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;
   _getByte?: Maybe<Scalars['Byte']>;
@@ -3032,8 +2724,8 @@ export type _Se_Voucher = {
   aggVersion: Scalars['Long'];
   lastChangeDate?: Maybe<Scalars['_DateTime']>;
   chgCnt?: Maybe<Scalars['Long']>;
-  code: Scalars['String'];
   issuedAt?: Maybe<Scalars['_DateTime']>;
+  code: Scalars['String'];
   type: Scalars['String'];
   _getChar?: Maybe<Scalars['Char']>;
   _getString?: Maybe<Scalars['String']>;

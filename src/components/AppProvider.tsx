@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { ApolloClient, ApolloProvider, HttpLink, NormalizedCacheObject } from '@apollo/client';
+import React, { FC, MutableRefObject } from 'react';
+import { ApolloClient, ApolloProvider, HttpLink, NormalizedCacheObject, useApolloClient } from '@apollo/client';
 
 import { cache } from '../cache'
 import { GiftVendorList } from './GiftVendorList'
@@ -13,11 +13,13 @@ export interface ServiceData {
   appAddress: string
   appKey: string
   appSecret: string
+  initApolloClient: MutableRefObject<boolean>
+
 }
 
 
 
-export const AppProvider: FC<ServiceData> = ({ appAddress, appKey, appSecret }) => {
+export const AppProvider: FC<ServiceData> = ({ appAddress, appKey, appSecret, initApolloClient }) => {
 
   const initClient = () => {
     const authFetch = (uri: any, options: any) => {
@@ -31,9 +33,6 @@ export const AppProvider: FC<ServiceData> = ({ appAddress, appKey, appSecret }) 
       return fetch(uri, options);
     };
 
-    localStorage.setItem("appAddress", appAddress)
-    localStorage.setItem("appKey", appKey)
-    localStorage.setItem("appSecret", appSecret)
     console.log(process.env.NODE_ENV);
 
 
@@ -49,19 +48,21 @@ export const AppProvider: FC<ServiceData> = ({ appAddress, appKey, appSecret }) 
 
 
 
-  var client: ApolloClient<NormalizedCacheObject> = initClient()
+  var apolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
-  if (!(appAddress === localStorage.getItem("appAddress") &&
-    appKey === localStorage.getItem("appKey") &&
-    appSecret === localStorage.getItem("appSecret"))
-  ) {
-    client = initClient()
+  if (initApolloClient.current) {
+    apolloClient = initClient()
+    initApolloClient.current = false
   }
 
-  return (
-    <ApolloProvider client={client}>
-      <GiftVendorList />
-    </ApolloProvider>
-  )
+  if (apolloClient) {
+    return (
+      <ApolloProvider client={apolloClient!}>
+        <GiftVendorList />
+      </ApolloProvider>
+    )
+  } else {
+    return <p>Please enter authorization data...</p>
+  }
 
 }
