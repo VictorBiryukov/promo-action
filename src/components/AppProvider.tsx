@@ -14,10 +14,7 @@ export interface ServiceData {
   appKey: string
   appSecret: string
   initApolloClient: MutableRefObject<boolean>
-
 }
-
-
 
 export const AppProvider: FC<ServiceData> = ({ appAddress, appKey, appSecret, initApolloClient }) => {
 

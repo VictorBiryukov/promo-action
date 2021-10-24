@@ -45,23 +45,25 @@ export const GiftVendorList: FC = () => {
             list?.map(elem => {
                 return (
                     <TabPane key={elem.id ?? ""} tab={elem.name}>
-                        <Button key={elem.id ?? ""} onClick={(e) => {
-                            deleteGiftVendorMutation({
-                                variables: {
-                                    id: elem.id
-                                },
-                                update: (store) => {
-                                    store.writeQuery({
-                                        query: SearchGiftVendorDocument,
-                                        data: {
-                                            searchGiftVendor: {
-                                                elems: giftVendorList!.filter(x => x.id !== elem.id)
+                        <Button style={{ margin: "20px" }}
+                            key={elem.id ?? ""}
+                            onClick={(e) => {
+                                deleteGiftVendorMutation({
+                                    variables: {
+                                        id: elem.id
+                                    },
+                                    update: (store) => {
+                                        store.writeQuery({
+                                            query: SearchGiftVendorDocument,
+                                            data: {
+                                                searchGiftVendor: {
+                                                    elems: giftVendorList!.filter(x => x.id !== elem.id)
+                                                }
                                             }
-                                        }
-                                    })
-                                }
-                            })
-                        }}>Delete gift vendor</Button>
+                                        })
+                                    }
+                                })
+                            }}>Delete gift vendor</Button>
                         <p />
                         <GiftList vendorId={elem.id} />
                     </TabPane>
@@ -76,9 +78,10 @@ export const GiftVendorList: FC = () => {
     return (
         <>
             {/* <Space> */}
-            <Button onClick={() => setShowCreateForm(true)}>
+            <Button style={{ margin: "20px" }}
+                onClick={() => setShowCreateForm(true)}>
                 Add new gift vendor
-                </Button>
+            </Button>
             {/* </Space> */}
             <Modal visible={showCreateForm}
                 onCancel={() => setShowCreateForm(false)}
@@ -109,7 +112,7 @@ export const GiftVendorList: FC = () => {
                     </Form.Item>
                 </Form>
             </Modal>
-            <Form>
+            <Form style={{ margin: "10px" }}>
                 <Form.Item>
                     <Tabs>
                         {getTabs(giftVendorList)}

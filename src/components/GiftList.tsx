@@ -62,27 +62,28 @@ export const GiftList: FC<GiftListProps> = ({ vendorId }) => {
                     serialNumber: elem.serialNumber,
                     kind: elem.kind,
                     action: (
-                        <Button onClick={() => {
-                            deleteGiftMutation({
-                                variables: {
-                                    id: elem.id
-                                },
-                                update: (store) => {
-                                    store.writeQuery({
-                                        query: SearchGiftDocument,
-                                        variables: {
-                                            cond: "it.vendor.$id == '" + vendorId + "'"
-                                        },
-                                        data: {
-                                            searchGift: {
-                                                elems: giftList!.filter(x => x.id !== elem.id)
+                        <Button
+                            onClick={() => {
+                                deleteGiftMutation({
+                                    variables: {
+                                        id: elem.id
+                                    },
+                                    update: (store) => {
+                                        store.writeQuery({
+                                            query: SearchGiftDocument,
+                                            variables: {
+                                                cond: "it.vendor.$id == '" + vendorId + "'"
+                                            },
+                                            data: {
+                                                searchGift: {
+                                                    elems: giftList!.filter(x => x.id !== elem.id)
+                                                }
                                             }
-                                        }
-                                    })
-                                }
-                            })
-                        }
-                        }>Delete
+                                        })
+                                    }
+                                })
+                            }
+                            }>Delete
                         </Button>
                     )
                 }
@@ -95,10 +96,10 @@ export const GiftList: FC<GiftListProps> = ({ vendorId }) => {
 
     return (
         <>
-            <Button type="primary"
+            <Button type="primary" style={{ margin: "20px" }}
                 onClick={() => setShowCreateForm(true)}>
                 Add new gift
-                </Button>
+            </Button>
             <Modal visible={showCreateForm}
                 onCancel={() => setShowCreateForm(false)}
                 onOk={() => {

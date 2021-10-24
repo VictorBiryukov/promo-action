@@ -4,6 +4,9 @@ const { HotModuleReplacementPlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const webpack = require('webpack');
+const { env } = require('process');
+require('dotenv').config({ path: './.env' }); 
+
 
 module.exports = {
     entry: path.resolve(__dirname, "src/index.tsx"),
@@ -23,7 +26,7 @@ module.exports = {
         before: (app) => {
             app.use(createProxyMiddleware("/graphql",
                 {
-                    target: "https://smapi.pv-api.sbc.space/ds-6977680424981364738/graphql",
+                    target: process.env.DS_ENDPOINT,
                     changeOrigin: true,
                     secure: false,
                     pathRewrite: { '/graphql': '' }
