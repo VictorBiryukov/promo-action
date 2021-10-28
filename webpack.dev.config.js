@@ -17,10 +17,6 @@ module.exports = {
         publicPath: "/",
     },
     devServer: {
-        // historyApiFallback: true,
-        // watchContentBase: true,
-        // open: true,
-        // compress: true,
         hot: true,
         port: 3000,
         before: (app) => {
@@ -38,32 +34,11 @@ module.exports = {
         }
     },
     plugins: [
-        //Allows remove/clean the build folder
         new CleanWebpackPlugin(),
-        //Allows update react components in real time
         new HotModuleReplacementPlugin(),
-        // //Allows to create an index.html in our build folder
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "public/index.html"), //we put the file that we created in public folder
         }),
-        // new webpack.EnvironmentPlugin({
-        //     APP_DEV_URL: "http://localhost:8081/",
-        //     APP_OWNER_KEY: "owner-id",
-        // }),
-        // new webpack.ProvidePlugin({
-        //     process: 'process/browser',
-        // }),
-        // new webpack.DefinePlugin({
-        //     'process.env.NODE_TLS_REJECT_UNAUTHORIZED': 0
-        // }),
-        // new webpack.ProvidePlugin({
-        //     process: 'process/browser',
-        // }),
-        // new webpack.EnvironmentPlugin({
-        //     NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
-        //     DEBUG: false,
-        // }),
-
     ],
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json', '.css', '.env']
