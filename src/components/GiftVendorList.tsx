@@ -77,12 +77,10 @@ export const GiftVendorList: FC = () => {
 
     return (
         <>
-            {/* <Space> */}
             <Button style={{ margin: "20px" }}
                 onClick={() => setShowCreateForm(true)}>
                 Add new gift vendor
             </Button>
-            {/* </Space> */}
             <Modal visible={showCreateForm}
                 onCancel={() => setShowCreateForm(false)}
                 onOk={() => {
