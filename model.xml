@@ -1,0 +1,96 @@
+<model model-name="ds____________f370965b_bf27_4c29_83ca_21" version="0.0.2">
+  <layout>
+    <model/>
+    <enums>
+      <enum name="GiftKind">
+        <value name="MUG" x="1335" y="354"/>
+        <value name="CAP" x="1335" y="414"/>
+        <value name="TSHIRT" x="1335" y="474"/>
+      </enum>
+    </enums>
+    <classes>
+      <class name="Gift">
+        <property name="vendor" x="788" y="473"/>
+        <property name="kind" x="788" y="593"/>
+        <property name="serialNumber" x="788" y="533"/>
+      </class>
+      <class name="GiftVendor">
+        <property name="name" x="662" y="175"/>
+        <property name="gifts" x="662" y="235"/>
+      </class>
+      <class name="VoucherSerie">
+        <property name="code" x="-241" y="-52"/>
+        <property name="activeTo" x="-241" y="8"/>
+        <property name="startedAt" x="-241" y="68"/>
+        <property name="vouchers" x="-241" y="128"/>
+        <reference name="client" x="-237" y="-117"/>
+      </class>
+      <class name="GiftRequestCounter">
+        <property name="counter" x="1787" y="78"/>
+        <property name="lastRequest" x="1787" y="138"/>
+        <property name="kind" x="1787" y="198"/>
+      </class>
+      <class name="Voucher">
+        <property name="code" x="36" y="466"/>
+        <property name="issuedAt" x="36" y="406"/>
+        <property name="serie" x="36" y="346"/>
+        <reference name="gift" x="36" y="526"/>
+      </class>
+    </classes>
+    <statuses class="Voucher">
+      <stakeholder-link code="VoucherMain">
+        <status code="ISSUED" x="298" y="104"/>
+        <status code="OPEN" x="41" y="-10"/>
+      </stakeholder-link>
+    </statuses>
+  </layout>
+  <enum name="GiftKind">
+    <value name="MUG"/>
+    <value name="CAP"/>
+    <value name="TSHIRT"/>
+  </enum>
+  <class name="Gift" strategy="JOINED" is-abstract="false" embeddable="false">
+    <property name="vendor" type="GiftVendor" parent="true"/>
+    <property name="kind" type="GiftKind"/>
+    <property name="serialNumber" type="STRING" length="254" mandatory="true"/>
+    <index unique="true">
+      <property name="serialNumber"/>
+    </index>
+  </class>
+  <class name="GiftVendor" strategy="JOINED" is-abstract="false" embeddable="false">
+    <property name="name" type="LOCALDATE"/>
+    <property name="gifts" type="Gift" collection="SET" mappedBy="vendor"/>
+  </class>
+  <class name="VoucherSerie" strategy="JOINED" is-abstract="false" embeddable="false">
+    <property name="code" type="STRING" length="254"/>
+    <property name="activeTo" type="LOCALDATE"/>
+    <property name="startedAt" type="LOCALDATE"/>
+    <property name="vouchers" type="Voucher" collection="SET" mappedBy="serie"/>
+    <reference name="client" type="Client"/>
+  </class>
+  <class name="GiftRequestCounter" strategy="JOINED" is-abstract="false" embeddable="false">
+    <property name="counter" type="INTEGER"/>
+    <property name="lastRequest" type="LOCALDATETIME" length="3"/>
+    <property name="kind" type="GiftKind"/>
+  </class>
+  <class name="Voucher" strategy="JOINED" is-abstract="false" embeddable="false">
+    <property name="code" type="STRING" length="254" mandatory="true"/>
+    <property name="issuedAt" type="LOCALDATETIME" length="3"/>
+    <property name="serie" type="VoucherSerie" parent="true"/>
+    <reference name="gift" type="Gift"/>
+    <index unique="true">
+      <property name="code"/>
+    </index>
+  </class>
+  <status-classes class="Voucher">
+    <stakeholder code="VoucherMain" name="Основной статус ваучера"/>
+  </status-classes>
+  <statuses class="Voucher" historical="false">
+    <stakeholder-link code="VoucherMain">
+      <status code="ISSUED" name="Использован" initial="false"/>
+      <status code="OPEN" name="Открыт" initial="true">
+        <to status="ISSUED"/>
+      </status>
+    </stakeholder-link>
+  </statuses>
+</model>
