@@ -773,7 +773,7 @@ type _Mutation {
 
 # Пример итоговой схемы
 
-Пример схемы GraphQL можно увидеть во вложенном файле [graphql-schema-big](resources/graphql-schema-big.json).
+Пример схемы GraphQL можно увидеть во вложенном файле [schema.graphql](../schema.graphql).
 
 # Виды запросов
 
