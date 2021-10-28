@@ -16,5 +16,6 @@ Starting developer server
 
     npm start
 
-Go to http://localhost:3000 in your browser
-
+Go to http://localhost:3000 in your browser.
+Input endpoint, application key, application secret of your DataSpace service.
+Enjoy your service!
