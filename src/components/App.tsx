@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef} from 'react'
+import React, { FC, useState, useRef } from 'react'
 import 'antd/dist/antd.css';
 import { Button, Form, Input, Layout, Modal } from 'antd';
 const { Content, Header } = Layout;
@@ -60,6 +60,4 @@ export const App: FC = () => {
             </Content>
         </Layout>
     )
-
 }
-

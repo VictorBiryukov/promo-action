@@ -1,0 +1,35 @@
+#getGiftBtn {
+    margin: 0 auto;
+    display: block;
+    background-color: #323a5b;
+    color: white;
+    border: 0;
+    width: 250px;
+    border-radius: 5px;
+    font-size: 25px;
+    height: 45px;
+}
+#getGiftBtn:hover {
+    margin: 0 auto;
+    display: block;
+    background-color: #333A59;
+    color: white;
+    border: 0;
+    width: 250px;
+    border-radius: 5px;
+    cursor:pointer;
+    font-size: 25px;
+    height: 45px;
+}
+
+#getGiftBtn:active {
+    margin: 0 auto;
+    display: block;
+    background-color: #292f4a;
+    color: white;
+    border: 0;
+    width: 250px;
+    border-radius: 5px;
+    font-size: 25px;
+    height: 45px;
+}
