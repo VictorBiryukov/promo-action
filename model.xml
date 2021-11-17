@@ -58,7 +58,7 @@
     </index>
   </class>
   <class name="GiftVendor" strategy="JOINED" is-abstract="false" embeddable="false">
-    <property name="name" type="LOCALDATE"/>
+    <property name="name" type="STRING" length="254" />
     <property name="gifts" type="Gift" collection="SET" mappedBy="vendor"/>
   </class>
   <class name="VoucherSerie" strategy="JOINED" is-abstract="false" embeddable="false">
