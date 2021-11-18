@@ -2,14 +2,6 @@ import React, { FC, useState } from 'react'
 
 import { Button, Form, Input, Modal, Select, Spin, Table } from 'antd'
 
-// import Button from 'antd/lib/button'
-// import Form from 'antd/lib/form'
-// import Input from 'antd/lib/input'
-// import Modal from 'antd/lib/modal'
-// import Select from 'antd/lib/select'
-// import Spin from 'antd/lib/spin'
-// import Table from 'antd/lib/table'
-
 import { useSearchGiftQuery, SearchGiftDocument, useCreateGiftMutation, useDeleteGiftMutation, _En_GiftKind } from '../__generate/graphql-frontend'
 
 const { Option } = Select
